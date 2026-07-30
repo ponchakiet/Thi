@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+    application:
+        name: api-gateway
+    cloud:
+      gateway:
+        routes:
+          - id: order-service
+            uri: lb://order-service
+            predicates:
+              - Path=/api/orders/**
+          - id: inventory-service
+            uri: lb://inventory-service
+            predicates:
+              - Path=/api/inventory/**
+        server:
+          webflux:
+            discovery:
+              locator:
+                enabled:  true
+                lower-case-service-id: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      prefer-ip-address: true
+
+logging:
+  level:
+    com.microservices.gateway: DEBUG

@@ -1,0 +1,23 @@
+spring:
+    application:
+        name: inventory-service
+    datasource:
+      url: jdbc:postgresql://localhost:5432/inventory_db
+      username: postgres
+      password: Ngocmai@1004
+      driver-class-name: org.postgresql.Driver
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8082
